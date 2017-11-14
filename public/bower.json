@@ -1,0 +1,22 @@
+{
+  "name": "MascotasPerdidas",
+  "authors": [
+    "javier <jalovatto@hotmail.com>"
+  ],
+  "description": "1.8.2",
+  "main": "paquetes del frontend para el proyecto MascotasPerdidas",
+  "license": "MIT",
+  "homepage": "mascotasperdidas.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-material-design": "^0.5.10" 
+  }
+}
