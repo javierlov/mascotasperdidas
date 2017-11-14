@@ -9,10 +9,13 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+
+         <!--  
         {{Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css')}}
 
         {{Html::style('bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css')}}
         {{Html::style('bower_components/bootstrap-material-design/dist/css/ripples.min.css')}}
+         -->
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -64,23 +67,17 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     <li>
-                                        <a href="{{ route('task.index') }}">
-                                            Tareas
-                                        </a>                                        
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('profile.index') }}">
-                                            Profile
-                                        </a>                                        
+                                        <a href="{{ route('task.index') }}">Tareas</a>
                                     </li>
 
                                     <li>
-                                        <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                            Salir
-                                        </a>
+                                        <a href="{{ route('profile.index') }}">Profile</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" 
                                               method="POST" style="display: none;">
@@ -89,6 +86,7 @@
                                     </li>
 
                                 </ul>
+
                             </li>
                             @endif
                         </ul>
@@ -100,15 +98,19 @@
         </div>
 
         <!-- Scripts -->
-         {{Html::script('bower_components/jquery/dist/jquery.min.js')}}
+
+ <!-- 
+        {{Html::script('bower_components/jquery/dist/jquery.min.js')}}
          {{Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js')}}
          {{Html::script('bower_components/bootstrap-material-design/dist/js/ripples.min.js')}}
          {{Html::script('bower_components/bootstrap-material-design/dist/js/material.min.js')}}
-        <script src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" >
             $(document).on('ready', function(){
                 $.material.init();
             });
         </script>
+
+ -->         
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
