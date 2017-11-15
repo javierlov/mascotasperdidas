@@ -10,7 +10,7 @@
 
                 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('profile.update', $task->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('profile.update', $users->id) }}">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 
@@ -19,7 +19,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" 
-                                       value="{{ $task->name }}" 
+                                       value="{{ $users->name }}" 
                                        required autofocus>
 
                                 @if ($errors->has('name'))
@@ -37,7 +37,7 @@
                                 <textarea rows="4" cols="50" id="description" type="text" class="form-control" 
                                        name="description" 
                                        required> 
-                                       {{ $task->description }}
+                                       {{ $users->description }}
                                 </textarea>
 
                                 @if ($errors->has('description'))

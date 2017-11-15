@@ -1,25 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
 
-            Total registros : {{ $tasks->count()}}
-            <div class="panel panel-default">
-                @foreach($tasks as $task)               
-                <div class="panel-heading clearfix">{{$task->name}} 
-                    <div class="panel-body clearfix">{{$task->id}} - 
-                        {{$task->name}} - 
-                        {{$task->description}}
-                        <a href="{{ route('profile.edit', $task->id) }}">Editar</a> 
-                    </div>
-                </div>
-                @endforeach
-                {{$tasks->links()}} 
+<div class="container"> 
+    
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>Email</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)   
+                  
+            <tr>
+                <td>{{$user->id}} </td>
+                <td>{{$user->name}} </td>
+                <td>{{$user->email}} </td>
+                <td><a href="{{ route('profile.edit', $user->id) }}">Editar</a>  </td>
+            </tr>
+            @endforeach
 
-            </div>
-        </div>
-    </div>
+
+        </tbody>
+    </table>
+    Total registros : {{ $users->count()}}
+    {{$users->links()}} 
 </div>
 @endsection 

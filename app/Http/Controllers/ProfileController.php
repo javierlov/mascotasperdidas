@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -18,9 +18,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('DESCRIPTION', 'LIKE', '%t%')->simplePaginate(5);
-        // dd($tasks);
-        return view('profile.index', compact('tasks'));
+        $users = User::Paginate(8);
+        //dd($users);
+        return view('profile.index', compact('users'));
     }
 
     /**
@@ -42,17 +42,16 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //1) validacion de datos
-        $this->validate($request,['name'=>'required|string', 'description'=>'required|string']);
+        $this->validate($request,['name'=>'required|string', 'email'=>'required|string']);
                 
         //2) instanciar modelo
-        $task = new Task;
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->user_ir = Auth::user()->id;//usuario logeado
-        $task->save();
+        $users = new users;
+        $users->name = $request->name;
+        $users->email = $request->description;
+        $users->save();
         
         //3) redireccionar
-        return "se guardo la tarea";
+        return "se guardo el usuario";
     }
 
     /**
@@ -63,7 +62,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        return view('profile.show', compact('task'));//pasamos variable $task
+        return view('profile.show', compact('users'));//pasamos variable $task
     }
 
     /**
@@ -74,7 +73,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        return view('profile.edit',compact('task'));
+        return view('profile.edit',compact('users'));
     }
 
     /**
@@ -87,18 +86,18 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //1) validacion de datos
-        $this->validate($request,['name'=>'required|string', 'description'=>'required|string']);
+        $this->validate($request,['name'=>'required|string', 'email'=>'required|string']);
                 
         //2) instanciar modelo       
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->user_ir = Auth::user()->id;//usuario logeado
-        $task->save();
+        $users->name = $request->name;
+        $users->email = $request->email;
+
+        $users->save();
         
         //3) redireccionar
         //$this->index();
-        $tasks = Task::paginate(10);
-        return view('task.index', compact('tasks'));
+        $users = users::paginate(10);
+        return view('profile.index', compact('users'));
     }
 
     /**
@@ -109,6 +108,6 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        return 'hi destroy';
+        return 'hi destroy users';
     }
 }
