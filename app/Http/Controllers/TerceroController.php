@@ -14,7 +14,9 @@ class TerceroController extends Controller
      */
     public function index()
     {
-        //
+        $terceros = Tercero::Paginate(8);
+        //dd($users);
+        return view('tercero.index', compact('terceros'));
     }
 
     /**

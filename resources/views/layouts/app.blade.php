@@ -54,8 +54,12 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Registrarse</a></li>
                             @else
+                            
                             <li><a href="{{ route('task.index') }}">Tareas</a></li>
                             <li><a href="{{ route('profile.index') }}">Perfiles</a></li>
+                            <li><a href="{{ route('mercaderia.index') }}">Mercaderia</a></li>
+                            <li><a href="{{ route('tercero.index') }}">Tercero</a></li>
+
                             <li><a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a></li>
                                 

@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         
         //crea 50 tareas
-        factory(App\Task::class, 10)->create();
+        //factory(App\Task::class, 10)->create();
+        
+        //factory(App\Mercaderia::class, 10)->create();
+        
+        //$this->call(TercerosTableSeeder::class);
+        //factory(App\Tercero::class, 3)->create();
+
+        factory(App\Mercaderia::class, 4)->create();
     }
 }

@@ -37,9 +37,8 @@ Route::get('/test/{name}/{age}','TestController@show');
 Route::get('/testdatos/{user}','TestController@datos');
 
 Route::resource('/profile','ProfileController');
-
-
-
+Route::resource('/mercaderia','MercaderiaController');
+Route::resource('/tercero','TerceroController');
 
 
 Route::get('/nombre', function(){

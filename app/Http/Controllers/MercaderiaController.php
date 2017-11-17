@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mercaderia;
+use Auth;
 use Illuminate\Http\Request;
 
 class MercaderiaController extends Controller
@@ -14,7 +15,9 @@ class MercaderiaController extends Controller
      */
     public function index()
     {
-        //
+          //dd($request);
+        $mercaderias = Mercaderia::Paginate(8);
+        return view('mercaderia.index', compact('mercaderias'));
     }
 
     /**
@@ -24,7 +27,7 @@ class MercaderiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('mercaderia.create');
     }
 
     /**
@@ -35,7 +38,23 @@ class MercaderiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['codigo' => 'required|string', 'tipo' => 'required|string', 'estado' => 'required']);
+
+        //2) instanciar modelo
+        $mercaderia = new Mercaderia;
+        
+        $mercaderia->codigo = $request->codigo;
+        $mercaderia->tipo = $request->tipo;
+        $mercaderia->tercero_id = $request->tercero_id;
+        $mercaderia->estado = $request->estado;
+        $mercaderia->amount = $request->amount;
+        $mercaderia->user_id = Auth::user()->id; //usuario logeado
+        
+        $mercaderia->save();
+
+        //3) redireccionar
+        return $this->index($this->valnull);
+        //return "se guardo la tarea";
     }
 
     /**

@@ -61,7 +61,7 @@ class TaskController extends Controller {
         $task->save();
 
         //3) redireccionar
-        return $this->index($this->valnull);
+        return $this->index($request);
         //return "se guardo la tarea";
     }
 
@@ -109,7 +109,7 @@ class TaskController extends Controller {
         $task->save();
 
         //3) redireccionar
-        return $this->index($this->valnull);
+        return $this->index($request);
         //$tasks = Task::paginate($this->paginas);
         //return view('task.index', compact('tasks'));
     }

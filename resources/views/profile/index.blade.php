@@ -20,7 +20,7 @@
                 <td>{{$user->id}} </td>
                 <td>{{$user->name}} </td>
                 <td>{{$user->email}} </td>
-                <td><a href="{{ route('profile.edit', $user->id) }}">Editar</a>  </td>
+                <td><a href="{{ route('register', $user->id) }}">Editar</a>  </td>
             </tr>
             @endforeach
 
