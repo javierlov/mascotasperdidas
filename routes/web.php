@@ -19,41 +19,34 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('/task','TaskController');
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('/task','TaskController');
+
+    Route::group(['middleware' => ['checkage:33']], function () {
+        Route::resource('/profile','ProfileController');
+        Route::resource('/mercaderia','MercaderiaController');
+        Route::resource('/tercero','TerceroController');
+    });
 
 
-Route::get('demo', function () {
-     //return 'hola desde demo';
-     return view('demo');
+    Route::get('/age', ['middleware'=>'checkage:21',
+        function(){ return '<h1>Bienvenido ya sos mayor ...<p>'.
+        Auth::user()->name.'. <p>Edad - '.Auth::user()->Age().'!!</h1>'; }]);
 });
 
-Route::get('/admin', function () {
-    return 'hola desde admin';
-});
 
+    Route::get('/admin', function () {
+        dd(Auth::user()->Age());
+    })->middleware('auth');
 
-Route::get('/test','TestController@index');
-Route::get('/test/{name}/{age}','TestController@show');
-Route::get('/testdatos/{user}','TestController@datos');
+    Route::get('/demo', function () { return view('demo'); })->middleware('auth');
+    Route::get('/nombre', function(){ $nombre = config('app.name');    return $nombre;});
 
-Route::resource('/profile','ProfileController');
-Route::resource('/mercaderia','MercaderiaController');
-Route::resource('/tercero','TerceroController');
+    Route::get('/tiempo', function(){    $nombre = config('app.timezone');    return $nombre;});
 
-
-Route::get('/nombre', function(){
-    $nombre = config('app.name');
-    return $nombre;
-});
-
-Route::get('/tiempo', function(){
-    $nombre = config('app.timezone');
-    return $nombre;
-});
-
-Route::get('/runtime', function(){
-    config(['app.timezone' => 'America/Mexico_City']);
-    $nombre = config('app.timezone');
-    return $nombre;
-});
+    Route::get('/runtime', function(){
+        config(['app.timezone' => 'America/Mexico_City']);
+        $nombre = config('app.timezone');
+        return $nombre;
+    });
 

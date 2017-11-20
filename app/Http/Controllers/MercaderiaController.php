@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mascotas\Http\Controllers;
 
-use App\Mercaderia;
+use Mascotas\Mercaderia;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -60,7 +60,7 @@ class MercaderiaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Mercaderia  $mercaderia
+     * @param  \Mascotas\Mercaderia  $mercaderia
      * @return \Illuminate\Http\Response
      */
     public function show(Mercaderia $mercaderia)
@@ -71,7 +71,7 @@ class MercaderiaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mercaderia  $mercaderia
+     * @param  \Mascotas\Mercaderia  $mercaderia
      * @return \Illuminate\Http\Response
      */
     public function edit(Mercaderia $mercaderia)
@@ -83,7 +83,7 @@ class MercaderiaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mercaderia  $mercaderia
+     * @param  \Mascotas\Mercaderia  $mercaderia
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Mercaderia $mercaderia)
@@ -94,7 +94,7 @@ class MercaderiaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Mercaderia  $mercaderia
+     * @param  \Mascotas\Mercaderia  $mercaderia
      * @return \Illuminate\Http\Response
      */
     public function destroy(Mercaderia $mercaderia)

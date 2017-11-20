@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Mascotas;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,7 +29,11 @@ class User extends Authenticatable
     
     //relacion con tabla tasks
     public function tasks(){
-        $this->hasMany('App\Task');
+        $this->hasMany('Mascotas\Task');
         
+    }
+
+    public function Age(){
+        return ($this->id * 2);
     }
 }

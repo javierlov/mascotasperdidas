@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Mascotas;
 
 use Illuminate\Database\Eloquent\Model;
 

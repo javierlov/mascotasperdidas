@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Mascotas;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,11 +19,17 @@ class Task extends Model {
     
     //funcion relacion con tabla users
     public function user(){
-        $this->belongsTo('App\User');
+        $this->belongsTo('Mascotas\User');
     }
     
     public function scopeSearch($query, $name){
         $query->where('name', 'LIKE', "%".$name."%");
         //dd($query);
+    }
+
+     public function scopeSearchUserId($query, $id){
+        $id=12;
+        dd($id);
+        $query->where('user_ir', '=', $id);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mascotas\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use Mascotas\User;
 
 class TestController extends Controller
 {

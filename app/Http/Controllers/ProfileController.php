@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Mascotas\Http\Controllers;
 
-use App\User;
+use Mascotas\User;
 use Auth;
 use Illuminate\Http\Request;
 

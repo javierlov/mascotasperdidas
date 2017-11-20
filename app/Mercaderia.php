@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Mascotas;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +19,7 @@ class Mercaderia extends Model
     
     //funcion relacion con tabla users
     public function user(){
-        $this->belongsTo('App\User');
+        $this->belongsTo('Mascotas\User');
     }
     
     public function scopeSearch($query, $codigo){
