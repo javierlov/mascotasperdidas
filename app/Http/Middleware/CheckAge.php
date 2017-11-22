@@ -3,6 +3,7 @@
 namespace Mascotas\Http\Middleware;
 
 use Closure;
+use Session;
 
 class CheckAge
 {
@@ -18,6 +19,7 @@ class CheckAge
         
         if ($request->user()->Age() <= $age) {
             //abort(403,"No tienes la edad suficiente ");
+            Session::flash('generalmsg','Usted es menor. Edad : '.$request->user()->Age());
             return redirect('home');
         }
 

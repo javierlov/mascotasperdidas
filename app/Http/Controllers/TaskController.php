@@ -5,33 +5,42 @@ namespace Mascotas\Http\Controllers;
 use Mascotas\Task;
 use Auth;
 use Illuminate\Http\Request;
+use Session;
+use DateTime;
+use Carbon\Carbon;
+//use Laracasts\Flash\Flash;
 
 class TaskController extends Controller {
 
     /**
-     * https://www.youtube.com/watch?v=WyKgd1sX6S4&list=PLS3ZgoVufwTkqmF0oAnfeus9ZklMqjFhS&index=28
-     * https://www.youtube.com/watch?v=2FRHOe2JUwI&list=PLS3ZgoVufwTkqmF0oAnfeus9ZklMqjFhS&index=30
-     * https://www.youtube.com/watch?v=w_6gHm8LkGM
+      https://www.youtube.com/watch?v=WyKgd1sX6S4&list=PLS3ZgoVufwTkqmF0oAnfeus9ZklMqjFhS&index=28
+      https://www.youtube.com/watch?v=2FRHOe2JUwI&list=PLS3ZgoVufwTkqmF0oAnfeus9ZklMqjFhS&index=30
+      https://www.youtube.com/watch?v=w_6gHm8LkGM
+     *********************
+     https://www.youtube.com/watch?time_continue=7&v=rEu3m8R3JjE
+
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $paginas = 5;
-    private $valnull = 'N';
+     private $paginas = 5;
+     private $valnull = 'N';
 
-    public function __consturct(){
+     public function __consturct(){
         $this->middleware('auth');
         $this->middleware('checkage');
     }
 
     public function index(Request $request) {
 
-         //dd($request);
+ return view('layouts.captcha');
+
         $user_id = Auth::user()->id; 
-        //$tasks = Task::paginate($this->paginas);
+        // dd($request);
+        // $tareas = Task::paginate($this->paginas);
         
-        //recupera el modelo y retorna todas las tareas
-        $tasks = Task::SearchUserId($request, 11)->paginate($this->paginas);
+        // recupera el modelo y retorna todas las tareas
+        $tasks = Task::SearchUserId($request, $user_id)->paginate($this->paginas);
         
         return view('task.index', compact('tasks'));
     }
@@ -57,15 +66,17 @@ class TaskController extends Controller {
         //almacena datos en la base
         //1) validacion de datos
         $this->validate($request, ['name' => 'required|string|min:10|max:20', 
-                                'description' => 'required|string|max:200']);
+            'description' => 'required|string|max:200']);
 
         //2) instanciar modelo
         $task = new Task;
         $task->name = $request->name;
         $task->description = $request->description;
-        $task->user_ir = Auth::user()->id; //usuario logeado
+        $task->user_id = Auth::user()->id; //usuario logeado
         $task->save();
 
+        Session::flash('message','se ha insertado correctamente. Tarea : '.$task->id);
+        // flash("se ha guardado correctamente ");
         //3) redireccionar
         return $this->index($request);
         //return "se guardo la tarea";
@@ -111,13 +122,17 @@ class TaskController extends Controller {
         //2) instanciar modelo       
         $task->name = $request->name;
         $task->description = $request->description;
-        $task->user_ir = Auth::user()->id; //usuario logeado
+        $task->user_id = Auth::user()->id; //usuario logeado
+
+        $hoy = Carbon::now()->toDateTimeString();
+        $task->updated_at = $hoy;  
+        
         $task->save();
 
+        Session::flash('message','se ha actualizado correctamente. Tarea : '.$task->id.' fecha '.$hoy);
         //3) redireccionar
-        return $this->index($request);
-        //$tasks = Task::paginate($this->paginas);
-        //return view('task.index', compact('tasks'));
+        return redirect('task');
+        //return $this->index($request);
     }
 
     /**
@@ -126,8 +141,17 @@ class TaskController extends Controller {
      * @param  \Mascotas\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task) {
-        //
+    public function destroy($id) {
+        // dd($task);
+        // delete
+        $task = Task::find($id);
+        $task->delete();
+
+        // redirect
+        Session::flash('message','se ha eliminado correctamente. Tarea : '.$id);
+        //flash("se ha eliminado correctamente ");
+
+        return redirect('task');
     }
 
 }

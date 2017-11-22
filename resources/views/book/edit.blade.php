@@ -6,10 +6,11 @@
         <div class="col-md-8 col-md-offset-2">
             
             <div class="panel panel-default">
-                <div class="panel-heading">Editar Tarea</div>
+                <div class="panel-heading">Editar Profile</div>
 
+                
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('task.update', $task->id) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('profile.update', $users->id) }}">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 
@@ -17,7 +18,8 @@
                             <label for="name" class="col-md-4 control-label">Nombre de la Tarea</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ $task->name }}" 
+                                <input id="name" type="text" class="form-control" name="name" 
+                                       value="{{ $users->name }}" 
                                        required autofocus>
 
                                 @if ($errors->has('name'))
@@ -32,8 +34,10 @@
                             <label for="description" class="col-md-4 control-label">Descripcion </label>
 
                             <div class="col-md-6">
-                                <textarea id="description" rows="7" type="text" class="form-control" name="description" 
-                                       required>{{ $task->description }}
+                                <textarea rows="4" cols="50" id="description" type="text" class="form-control" 
+                                       name="description" 
+                                       required> 
+                                       {{ $users->description }}
                                 </textarea>
 
                                 @if ($errors->has('description'))
@@ -49,9 +53,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Actualizar Tarea
                                 </button>
-                                <a class="btn btn-primary" href="{{ route('task.index') }} ">
-                                    Listado
-                                </a>
                             </div>
                         </div>
                     </form>

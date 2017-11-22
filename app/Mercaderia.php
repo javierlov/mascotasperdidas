@@ -19,9 +19,15 @@ class Mercaderia extends Model
     
     //funcion relacion con tabla users
     public function user(){
-        $this->belongsTo('Mascotas\User');
+        // $this->belongsTo('Mascotas\User');
+        return $this->belongsTo('Mascotas\User');
     }
     
+    public function tercero(){
+        // $this->belongsTo('Mascotas\User');
+        return $this->belongsTo('Mascotas\Tercero');
+    }
+
     public function scopeSearch($query, $codigo){
         $query->where('codigo', 'LIKE', "%".$codigo."%");
         //dd($query);

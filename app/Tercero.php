@@ -8,5 +8,8 @@ class Tercero extends Model
 {
     protected $table = 'terceros'; //esto no es necesario en este caso
     //declaro campos asignables masivamente
-    protected $fillable = ['id','nit','nombre', 'rol', 'direccion','email','notas'];
+    protected $fillable = ['id','nombre', 'rol', 'direccion','email','notas'];
+
+    //campos ocultos
+    protected $hidden = ['nit'];
 }
